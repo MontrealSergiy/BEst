@@ -43,8 +43,8 @@ apt-get install wget -y --fix-missing
 # chmod 0444 /DATA
 chmod 777 /DERIVATIVES
 wget https://gitlab.com/sergiyb/best-sing/raw/master/BEst_.install
-
-BEst_.install -mode silent -agreeToLicense yes
+chmod a+x BEst_.install
+./BEst_.install -mode silent -agreeToLicense yes
 rm BEst_.install
 apt-get install python -y
 
