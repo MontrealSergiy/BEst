@@ -39,6 +39,7 @@ mkdir -p DERIVATIVES
 apt-get update
 apt-get install unzip -y
 apt-get install xorg -y --fix-missing
+apt-get install wget -y --fix-missing
 # chmod 0444 /DATA
 chmod 777 /DERIVATIVES
 wget https://gitlab.com/sergiyb/best-sing/raw/master/BEst_.install
