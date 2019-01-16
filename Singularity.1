@@ -42,7 +42,16 @@ apt-get install xorg -y --fix-missing
 apt-get install wget -y --fix-missing
 # chmod 0444 /DATA
 chmod 777 /DERIVATIVES
-wget https://gitlab.com/sergiyb/best-sing/raw/master/BEst_.install
+#
+# wget https://gitlab.com/sergiyb/best-sing/raw/master/BEst_.install
+
+# figure the latest release tag
+export TAG=$(wget -qO-  --header="Accept: application/json" https://github.com/MontrealSergiy/BEst/releases/latest| cut -d '"' -f 6)
+
+#upload exec file from the release
+wget https://github.com/MontrealSergiy/BEst/releases/download/$TAG/BEst_.install
+
+
 chmod a+x BEst_.install
 ./BEst_.install -mode silent -agreeToLicense yes
 rm BEst_.install
