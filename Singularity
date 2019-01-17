@@ -16,16 +16,18 @@ MAINTAINER S.Boroday
     export MCR_ROOT
     export LAUNCH_BEST
 
-# %files
-    # ./BEst_.install /tmp/BEst_.install
-    # ./best/DATA /DATA
-
-
 %help
-#     you need to have installer of the tool BEst and data to use
 
-Example
-   $BEST_DIR/run_BEst.sh $MCR_ROOT MMEG.mat GMEG.mat vtcConn.mat sources cMEM "MEG" "1 1.9" "0 0.9"  normalization adaptive clusteringMethod static mspWindow 10 mspThresholdMethod arbitrary mspThreshold 0 neighborhoodOrder 4 spatialSmoothing 0.6 activeMeanInit 2 activeProbaInit 3 lambdaInit 1 activeProbaThreshold 0 activeVarCoef 0.05 inactiveVarCoef 0 noiseCovMethod 2 optimMethod fminunc useParallel 0
+ to update container you need to create a release and attached installer package BEst_install of the tool BEst
+ 
+ To run you need at least three matlab .mat files with recording, leading fields data, and adjacency matrix
+ 
+ Example
+ 
+   singularity run recording.mat leadfield.mat adjacency.mat result.mat cMEM "MEG" "1 1.9" "0 0.9"  normalization adaptive clusteringMethod static mspWindow 10 mspThresholdMethod arbitrary mspThreshold 0 neighborhoodOrder 4 spatialSmoothing 0.6 activeMeanInit 2 activeProbaInit 3 lambdaInit 1 activeProbaThreshold 0 activeVarCoef 0.05 inactiveVarCoef 0 noiseCovMethod 2 optimMethod fminunc useParallel 0 
+ 
+ Example inside container
+   $BEST_DIR/run_BEst.sh $MCR_ROOT MMEG.mat GMEG.mat vtcConn.mat result.mat cMEM "MEG" "1 1.9" "0 0.9"  normalization adaptive clusteringMethod static mspWindow 10 mspThresholdMethod arbitrary mspThreshold 0 neighborhoodOrder 4 spatialSmoothing 0.6 activeMeanInit 2 activeProbaInit 3 lambdaInit 1 activeProbaThreshold 0 activeVarCoef 0.05 inactiveVarCoef 0 noiseCovMethod 2 optimMethod fminunc useParallel 0
 
 ...
 
@@ -34,7 +36,7 @@ Example
 $BEST_DIR/run_BEst.sh $MCR_ROOT 
 
 %post
-echo "This section happens once after bootstrap to build the image."
+
 mkdir -p DERIVATIVES
 apt-get update
 apt-get install unzip -y
@@ -42,17 +44,22 @@ apt-get install xorg -y --fix-missing
 apt-get install wget -y --fix-missing
 # chmod 0444 /DATA
 chmod 777 /DERIVATIVES
-wget https://gitlab.com/sergiyb/best-sing/raw/master/BEst_.install
+
+# figure the latest release tag
+export TAG=$(wget -qO- --header="Accept: application/json" https://github.com/MontrealSergiy/BEst/releases/latest| cut -d '"' -f 6)
+
+#download tool instalation package file from the release
+wget https://github.com/MontrealSergiy/BEst/releases/download/$TAG/BEst_.install
+
+# an alternative download from gitlab
+# wget https://gitlab.com/sergiyb/best-sing/raw/master/BEst_.install
+
 chmod a+x BEst_.install
 ./BEst_.install -mode silent -agreeToLicense yes
 rm BEst_.install
 apt-get install python -y
 
+# todo move to zenodo from gitlab?
 wget https://gitlab.com/sergiyb/best-sing/raw/master/data_best_toolbox/GMEG.mat
 wget https://gitlab.com/sergiyb/best-sing/raw/master/data_best_toolbox/MMEG.mat
 wget https://gitlab.com/sergiyb/best-sing/raw/master/data_best_toolbox/vtcConn.mat
-
-
-
-
-
