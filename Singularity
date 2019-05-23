@@ -18,6 +18,11 @@ MAINTAINER S.Boroday
 %help
 
  to update container you need to create a release and attached installer package BEst_install of the tool BEst
+ Presently installer is built locally manually using Matlap Compiler pluging GUI or in console with
+     cd ~
+     git clone https://gitlab.com/multifunkimlab/best 
+     mcc -o BEst -W main:BEst -T link:exe -d ~/best/LAUNCH_ME_SCRIPT_BEst/for_redistribution -R '-logfile,mcc.log' -v ~/best/BEst.m -a ~/best/BEst.m -a ~/best/CODE -a ~/best/LAUNCH_ME_SCRIPT.m 
+ 
  
  To run you need at least three matlab .mat files with recording, leading fields data, and adjacency matrix
  
