@@ -5,17 +5,15 @@ Here is a prelimary version of BEst singularity recipe for Singularity Hub integ
 https://neuroimage.usc.edu/brainstorm/Tutorials/TutBEst
 
 
- to update container you need to create a release and attached installer package BEst_install of the tool BEst
- Presently installer is built locally manually using Matlap Compiler pluging GUI or in console with
+to update container you need to create a release and attached installer package BEst_install of the tool BEst
+Presently installer is built locally manually using Matlap Compiler pluging GUI or in console with
  
- ~~~~ 
-     cd ~
-     git clone https://gitlab.com/multifunkimlab/best 
-       mcc -o BEst -W main:BEst -T link:exe -d ~/best/LAUNCH_ME_SCRIPT_BEst/for_redistribution -R '-logfile,mcc.log' -v ~/best/BEst.m -a ~/best/BEst.m -a ~/best/CODE -a ~/best/LAUNCH_ME_SCRIPT.m 
+~~~~shell 
+cd ~
+git clone https://gitlab.com/multifunkimlab/best 
+mcc -o BEst -W main:BEst -T link:exe -d ~/best/LAUNCH_ME_SCRIPT_BEst/for_redistribution -R '-logfile,mcc.log' -v ~/best/BEst.m -a ~/best/BEst.m -a ~/best/CODE -a ~/best/LAUNCH_ME_SCRIPT.m 
 ~~~~
 
 Attach this file to release and commit something to triger rebuild
 
-
-
-[![https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg](https://www.singularity-hub.org/static/img/hosted-singularity--hub-%23e32929.svg)](https://singularity-hub.org/collections/2087)
+https://singularity-hub.org/collections/2087
