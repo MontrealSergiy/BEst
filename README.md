@@ -6,7 +6,7 @@ https://neuroimage.usc.edu/brainstorm/Tutorials/TutBEst
 
 
 to update container you need to create a release and attached installer package BEst_install of the tool BEst
-Presently installer is built locally manually using Matlap Compiler pluging GUI or in console with
+Presently installer is built locally manually using MATLAB Compiler pluging GUI or in console with
  
 ~~~~shell 
 cd ~
